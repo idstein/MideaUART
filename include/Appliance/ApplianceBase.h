@@ -12,9 +12,24 @@ namespace midea {
 enum ApplianceType : uint8_t {
   DEHUMIDIFIER = 0xA1,
   AIR_CONDITIONER = 0xAC,
-  AIR2WATER = 0xC3,
+  RANGE_HOOD = 0xB6,
+  HEAT_PUMP = 0xC3,
+  REFRIGERATOR = 0xCA,
+  CENTRAL_AIR_CONDITIONER = 0xCC,
+  FRESH_AIR_APPLIANCE = 0xCE,
+  CENTRAL_HEAT_PUMP = 0xCF,
+  TOP_LOAD_WASHER = 0xDA,
+  FRONT_LOAD_WASHER = 0xDB,
+  CLOTHES_DRYER = 0xDC,
+  DISHWASHER = 0xE1,
+  ELECTRIC_WATER_HEATER = 0xE2,
+  GAS_WATER_HEATER = 0xE3,
+  ELECTRIC_RICE_COOKER = 0xEA,
+  ELECTRIC_PRESSURE_COOKER = 0xEC,
+  WATER_DRINKING_APPLIANCE = 0xED,
   FAN = 0xFA,
-  CLEANER = 0xFC,
+  ELECTRIC_HEATER = 0xFB,
+  AIR_PURIFIER = 0xFC,
   HUMIDIFIER = 0xFD,
   BROADCAST = 0xFF
 };
@@ -78,6 +93,8 @@ class ApplianceBase {
   AutoconfStatus getAutoconfStatus() const { return this->m_autoconfStatus; }
   void setAutoconf(bool state) { this->m_autoconfStatus = state ? AUTOCONF_PROGRESS : AUTOCONF_DISABLED; }
   static void setLogger(LoggerFn logger) { dudanov::setLogger(logger); }
+  ApplianceType getApplianceType() const { return this->m_appType; }
+  void setApplianceType(ApplianceType appType) { this->m_appType = appType; }
 
  protected:
   std::vector<OnStateCallback> m_stateCallbacks;
